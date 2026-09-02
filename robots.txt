@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api
-Sitemap: https://hmkpartners.pages.dev/sitemap.xml
+Sitemap: https://hmkpartner.pages.dev/sitemap.xml
