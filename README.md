@@ -1,6 +1,6 @@
 # HMK홀딩스그룹 사업파트너 랜딩페이지 + 관리자 대시보드
 
-Cloudflare 한곳에서 전부 돌아갑니다. Supabase나 외부 서비스를 쓰지 않습니다.
+Cloudflare 한곳에서 전부 돌아갑니다. Supabase나 외부 서비스를 쓰지 않습니다..
 
 ```
 방문자 → 랜딩페이지(신청 폼) → Pages Functions → D1 데이터베이스
