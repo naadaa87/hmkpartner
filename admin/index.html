@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>사업파트너 신청 관리 · HMK홀딩스그룹</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/admin.css">
+</head>
+<body>
+
+<!-- ── 로그인 ── -->
+<div class="login" id="loginView">
+  <form class="login__box" id="loginForm">
+    <img class="login__logo" src="../assets/img/logo.png" alt="HMK홀딩스그룹" width="132" height="53">
+    <h1>사업파트너 신청 관리</h1>
+    <p class="login__sub">담당자 공용 계정으로 로그인하십시오.</p>
+    <label>
+      <span>아이디</span>
+      <input type="text" id="loginId" autocomplete="username" autocapitalize="off" spellcheck="false" required>
+    </label>
+    <label>
+      <span>비밀번호</span>
+      <input type="password" id="loginPw" autocomplete="current-password" required>
+    </label>
+    <button type="submit" class="btn btn--primary btn--block" id="loginBtn">로그인</button>
+    <p class="login__err" id="loginErr" role="alert"></p>
+  </form>
+</div>
+
+<!-- ── 대시보드 ── -->
+<div class="app" id="appView" hidden>
+
+  <header class="hd">
+    <div class="hd__in">
+      <div class="hd__brand">
+        <img src="../assets/img/logo.png" alt="HMK홀딩스그룹" width="112" height="45">
+        <span>사업파트너 신청 관리</span>
+      </div>
+      <div class="hd__act">
+        <button type="button" class="btn btn--ghost btn--sm" id="reloadBtn">새로고침</button>
+        <button type="button" class="btn btn--ghost btn--sm" id="csvBtn">엑셀 내려받기</button>
+        <button type="button" class="btn btn--plain btn--sm" id="logoutBtn">로그아웃</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- 요약 -->
+    <section class="stats" aria-label="현황 요약">
+      <button type="button" class="stat is-on" data-quick="all">
+        <strong id="statAll">0</strong><span>전체</span>
+      </button>
+      <button type="button" class="stat" data-quick="todo">
+        <strong id="statTodo">0</strong><span>미처리</span>
+      </button>
+      <button type="button" class="stat" data-quick="today">
+        <strong id="statToday">0</strong><span>오늘</span>
+      </button>
+      <button type="button" class="stat" data-quick="week">
+        <strong id="statWeek">0</strong><span>최근 7일</span>
+      </button>
+    </section>
+
+    <!-- 검색 · 필터 -->
+    <section class="filters" aria-label="검색과 필터">
+      <input type="search" id="q" placeholder="이름 · 회사 · 연락처 · 내용 검색" autocomplete="off">
+      <select id="fField" aria-label="관심 분야">
+        <option value="">관심 분야 · 전체</option>
+      </select>
+      <select id="fStatus" aria-label="현재 상황">
+        <option value="">현재 상황 · 전체</option>
+      </select>
+      <select id="fHandled" aria-label="처리 상태">
+        <option value="">처리 상태 · 전체</option>
+        <option value="0">미처리</option>
+        <option value="1">처리 완료</option>
+      </select>
+      <button type="button" class="btn btn--plain btn--sm" id="resetBtn">초기화</button>
+    </section>
+
+    <p class="count" id="count">불러오는 중…</p>
+
+    <!-- 목록 -->
+    <section class="list" id="list" aria-label="신청 목록"></section>
+    <p class="empty" id="empty" hidden>조건에 맞는 신청이 없습니다.</p>
+  </main>
+</div>
+
+<!-- ── 상세 ── -->
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet__bg" data-close></div>
+  <aside class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="dName">
+    <header class="sheet__hd">
+      <div>
+        <h2 id="dName">—</h2>
+        <p id="dSub">—</p>
+      </div>
+      <button type="button" class="sheet__x" data-close aria-label="닫기">&times;</button>
+    </header>
+
+    <div class="sheet__body">
+      <dl class="rows">
+        <div><dt>접수</dt><dd id="dDate">—</dd></div>
+        <div><dt>연락처</dt><dd id="dPhone">—</dd></div>
+        <div><dt>이메일</dt><dd id="dEmail">—</dd></div>
+        <div><dt>회사 · 상호</dt><dd id="dCompany">—</dd></div>
+        <div><dt>현재 상황</dt><dd id="dStatus">—</dd></div>
+        <div><dt>관심 분야</dt><dd id="dFields">—</dd></div>
+      </dl>
+
+      <h3>경력 · 사업 요약</h3>
+      <p class="summary" id="dSummary">—</p>
+
+      <h3>담당자 메모</h3>
+      <textarea id="dMemo" rows="6" placeholder="통화 내용, 다음 일정, 판단 등을 적어 두십시오."></textarea>
+
+      <label class="chk">
+        <input type="checkbox" id="dHandled">
+        <span>처리 완료로 표시</span>
+      </label>
+
+      <div class="sheet__act">
+        <button type="button" class="btn btn--primary" id="saveBtn">저장</button>
+        <a class="btn btn--ghost" id="callBtn" href="#">전화 걸기</a>
+        <a class="btn btn--ghost" id="mailBtn" href="#">메일 보내기</a>
+      </div>
+      <p class="saved" id="savedMsg" role="status"></p>
+
+      <button type="button" class="del" id="delBtn">이 신청 삭제</button>
+    </div>
+  </aside>
+</div>
+
+<script src="assets/admin.js"></script>
+</body>
+</html>
