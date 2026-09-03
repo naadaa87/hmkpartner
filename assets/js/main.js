@@ -107,16 +107,14 @@
     var thumbs = [].slice.call(gal.querySelectorAll('.gal__t'));
     var idx = 0;
 
-    // 사진이 실제로 열릴 때만 갤러리를 보여 줌.
-    // 파일이 아직 없으면 깨진 이미지 대신 영역 자체가 나타나지 않음.
+    // 사진 주소 뒤에 붙이는 판 번호. 파일을 새로 올렸을 때
+    // 브라우저가 예전 응답을 계속 쓰지 않도록 하는 장치.
+    var IMGV = '?v=20260903c';
+
+    // 사진이 없을 때만 갤러리를 감춤. 평소에는 그대로 보임.
     var probe = new Image();
-    probe.onload = function () {
-      gal.hidden = false;
-      gal.classList.add('is-in');
-      gImg.src = 'assets/img/office/lobby.jpg';
-    };
     probe.onerror = function () { gal.hidden = true; };
-    probe.src = 'assets/img/office/lobby.jpg';
+    probe.src = 'assets/img/office/lobby.jpg' + IMGV;
 
     function show(i) {
       i = (i + thumbs.length) % thumbs.length;
@@ -126,9 +124,9 @@
       stage.classList.add('is-load');
       var pre = new Image();
       pre.onload = pre.onerror = function () { stage.classList.remove('is-load'); };
-      pre.src = 'assets/img/office/' + name + '.jpg';
-      gSrc.srcset = 'assets/img/office/' + name + '.webp';
-      gImg.src = 'assets/img/office/' + name + '.jpg';
+      pre.src = 'assets/img/office/' + name + '.jpg' + IMGV;
+      gSrc.srcset = 'assets/img/office/' + name + '.webp' + IMGV;
+      gImg.src = 'assets/img/office/' + name + '.jpg' + IMGV;
       gImg.alt = 'HMK홀딩스그룹 본사 ' + b.dataset.cap;
       gCap.textContent = b.dataset.cap;
       gNow.textContent = i + 1;
@@ -159,7 +157,7 @@
 
     // 첫 화면이 자리 잡은 뒤 나머지 사진을 미리 받아 둠
     setTimeout(function () {
-      thumbs.forEach(function (b) { new Image().src = 'assets/img/office/' + b.dataset.name + '.jpg'; });
+      thumbs.forEach(function (b) { new Image().src = 'assets/img/office/' + b.dataset.name + '.jpg' + IMGV; });
     }, 1500);
   }
 
