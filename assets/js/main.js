@@ -81,6 +81,80 @@
     }
   }
 
+  /* ── 상단 바 그림자 · 맨 위로 버튼 ─────── */
+  var topBar = document.getElementById('top');
+  var topBtn = document.getElementById('topBtn');
+  var onScroll = function () {
+    if (topBar) topBar.classList.toggle('is-scrolled', window.scrollY > 8);
+    if (topBtn) topBtn.classList.toggle('is-show', window.scrollY > window.innerHeight * 1.2);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  if (topBtn) {
+    topBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  }
+
+  /* ── 사무실 갤러리 ─────────────────────── */
+  var gal = document.getElementById('gal');
+  if (gal) {
+    var gImg = document.getElementById('galImg');
+    var gSrc = document.getElementById('galSrc');
+    var gCap = document.getElementById('galCap');
+    var gNow = document.getElementById('galNow');
+    var stage = gal.querySelector('.gal__stage');
+    var thumbs = [].slice.call(gal.querySelectorAll('.gal__t'));
+    var idx = 0;
+
+    // 사진 파일이 아직 올라가지 않았다면 갤러리를 통째로 감춤
+    gImg.addEventListener('error', function () { gal.classList.add('is-off'); }, { once: true });
+
+    function show(i) {
+      i = (i + thumbs.length) % thumbs.length;
+      idx = i;
+      var b = thumbs[i];
+      var name = b.dataset.name;
+      stage.classList.add('is-load');
+      var pre = new Image();
+      pre.onload = pre.onerror = function () { stage.classList.remove('is-load'); };
+      pre.src = 'assets/img/office/' + name + '.jpg';
+      gSrc.srcset = 'assets/img/office/' + name + '.webp';
+      gImg.src = 'assets/img/office/' + name + '.jpg';
+      gImg.alt = 'HMK홀딩스그룹 본사 ' + b.dataset.cap;
+      gCap.textContent = b.dataset.cap;
+      gNow.textContent = i + 1;
+      thumbs.forEach(function (t, n) {
+        t.classList.toggle('is-on', n === i);
+        t.setAttribute('aria-selected', n === i ? 'true' : 'false');
+      });
+    }
+
+    thumbs.forEach(function (b, i) { b.addEventListener('click', function () { show(i); }); });
+    document.getElementById('galPrev').addEventListener('click', function () { show(idx - 1); });
+    document.getElementById('galNext').addEventListener('click', function () { show(idx + 1); });
+
+    gal.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { show(idx - 1); }
+      else if (e.key === 'ArrowRight') { show(idx + 1); }
+    });
+
+    // 모바일 좌우 스와이프
+    var x0 = null;
+    stage.addEventListener('touchstart', function (e) { x0 = e.changedTouches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 45) show(idx + (dx < 0 ? 1 : -1));
+      x0 = null;
+    }, { passive: true });
+
+    // 첫 화면이 자리 잡은 뒤 나머지 사진을 미리 받아 둠
+    setTimeout(function () {
+      thumbs.forEach(function (b) { new Image().src = 'assets/img/office/' + b.dataset.name + '.jpg'; });
+    }, 1500);
+  }
+
   /* ── 신청 폼 ───────────────────────────── */
   var form = document.getElementById('partnerForm');
   if (!form) return;
@@ -210,6 +284,20 @@
   form.addEventListener('input', function (e) {
     if (e.target.classList) e.target.classList.remove('is-invalid');
   });
+
+  var phoneField = form.elements.phone;
+  if (phoneField) {
+    phoneField.addEventListener('input', function () {
+      var v = this.value;
+      if (/[^0-9-]/.test(v)) return;
+      var d = v.replace(/\D/g, '').slice(0, 11);
+      if (!/^01/.test(d) || d.length < 4) return;
+      var out = d.length > 7
+        ? d.slice(0, 3) + '-' + d.slice(3, d.length - 4) + '-' + d.slice(-4)
+        : d.slice(0, 3) + '-' + d.slice(3);
+      if (out !== v) this.value = out;
+    });
+  }
   form.addEventListener('change', function (e) {
     var box = e.target.closest('.chips,.radios,.consent');
     if (box) box.classList.remove('is-invalid');

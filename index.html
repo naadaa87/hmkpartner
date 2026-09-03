@@ -13,14 +13,11 @@
 <meta property="og:url" content="https://hmkpartner.com/">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2A4F">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" as="image" href="assets/img/building.webp" type="image/webp">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -31,7 +28,7 @@
 <header class="top" id="top">
   <div class="wrap top__in">
     <a class="brand" href="#top" aria-label="HMK홀딩스그룹 사업파트너 모집 처음으로">
-      <img src="assets/img/logo.png" alt="HMK홀딩스그룹" width="140" height="56">
+      <img src="assets/img/logo.png" alt="HMK홀딩스그룹" width="172" height="69">
     </a>
     <nav class="menu" aria-label="본문 이동">
       <a href="#business">사업개요</a>
@@ -448,6 +445,47 @@
       </div>
       <p class="office__mail"><a href="mailto:hmkholdings@hmkholdings.com">hmkholdings@hmkholdings.com</a></p>
     </aside>
+
+    <div class="gal reveal" id="gal">
+      <figure class="gal__stage">
+        <picture>
+          <source id="galSrc" srcset="assets/img/office/lobby.webp" type="image/webp">
+          <img id="galImg" src="assets/img/office/lobby.jpg" alt="HMK홀딩스그룹 본사 로비와 리셉션" width="1400" height="1050" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>
+          <span class="gal__cap" id="galCap">로비 · 리셉션</span>
+          <span class="gal__count"><b id="galNow">1</b> / 6</span>
+        </figcaption>
+        <button type="button" class="gal__nav gal__nav--prev" id="galPrev" aria-label="이전 사진">&#8249;</button>
+        <button type="button" class="gal__nav gal__nav--next" id="galNext" aria-label="다음 사진">&#8250;</button>
+      </figure>
+      <div class="gal__thumbs" role="tablist" aria-label="사무실 사진 선택">
+        <button type="button" class="gal__t is-on" role="tab" aria-selected="true" data-name="lobby" data-cap="로비 · 리셉션">
+          <picture><source srcset="assets/img/office/lobby-s.webp" type="image/webp"><img src="assets/img/office/lobby-s.jpg" alt="로비 · 리셉션" width="560" height="420" loading="lazy"></picture>
+          <span>로비</span>
+        </button>
+        <button type="button" class="gal__t" role="tab" aria-selected="false" data-name="boardroom" data-cap="대회의실">
+          <picture><source srcset="assets/img/office/boardroom-s.webp" type="image/webp"><img src="assets/img/office/boardroom-s.jpg" alt="대회의실" width="560" height="420" loading="lazy"></picture>
+          <span>대회의실</span>
+        </button>
+        <button type="button" class="gal__t" role="tab" aria-selected="false" data-name="seminar" data-cap="세미나룸">
+          <picture><source srcset="assets/img/office/seminar-s.webp" type="image/webp"><img src="assets/img/office/seminar-s.jpg" alt="세미나룸" width="560" height="420" loading="lazy"></picture>
+          <span>세미나룸</span>
+        </button>
+        <button type="button" class="gal__t" role="tab" aria-selected="false" data-name="lounge" data-cap="워크카페 · 라운지">
+          <picture><source srcset="assets/img/office/lounge-s.webp" type="image/webp"><img src="assets/img/office/lounge-s.jpg" alt="워크카페 · 라운지" width="560" height="420" loading="lazy"></picture>
+          <span>라운지</span>
+        </button>
+        <button type="button" class="gal__t" role="tab" aria-selected="false" data-name="studio" data-cap="라이브 스튜디오 · 미팅 공간">
+          <picture><source srcset="assets/img/office/studio-s.webp" type="image/webp"><img src="assets/img/office/studio-s.jpg" alt="라이브 스튜디오 · 미팅 공간" width="560" height="420" loading="lazy"></picture>
+          <span>스튜디오</span>
+        </button>
+        <button type="button" class="gal__t" role="tab" aria-selected="false" data-name="corridor" data-cap="미팅룸 복도">
+          <picture><source srcset="assets/img/office/corridor-s.webp" type="image/webp"><img src="assets/img/office/corridor-s.jpg" alt="미팅룸 복도" width="560" height="420" loading="lazy"></picture>
+          <span>미팅룸</span>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -590,7 +628,7 @@
 <footer class="foot">
   <div class="wrap foot__in">
     <div class="foot__brand">
-      <img src="assets/img/logo.png" alt="HMK홀딩스그룹" width="120" height="48">
+      <img src="assets/img/logo.png" alt="HMK홀딩스그룹" width="134" height="54">
       <p>총괄기획본부 사업파트너 담당</p>
       <p>서울 강남구 봉은사로 129-1, 3층</p>
       <p><a href="mailto:hmkholdings@hmkholdings.com">hmkholdings@hmkholdings.com</a></p>
@@ -608,6 +646,10 @@
     </div>
   </div>
 </footer>
+
+<button type="button" class="topbtn" id="topBtn" aria-label="맨 위로">
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 5l-7 7 1.4 1.4L11 8.8V19h2V8.8l4.6 4.6L19 12z" fill="currentColor"/></svg>
+</button>
 
 <!-- 모바일 고정 신청 바 -->
 <div class="stickybar" id="stickyBar" hidden>
