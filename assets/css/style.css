@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════
    HMK홀딩스그룹 사업파트너 모집 랜딩페이지
-   build 20260903c
+   build 20260903e
    흰 배경 · 오렌지 포인트 · 큰 글자
    ═══════════════════════════════════════════════ */
 
@@ -229,19 +229,6 @@ h3{font-size:20px;font-weight:700;letter-spacing:-.022em}
 }
 .sourcing__steps strong{grid-column:2;display:block;font-size:17px;color:var(--ink)}
 .sourcing__steps span{grid-column:2;display:block;font-size:15px;color:var(--ink-2);margin-top:3px;line-height:1.6}
-
-.proof{margin-top:64px}
-.proof__title{font-size:21.5px;margin-bottom:10px}
-.proof__lead{color:var(--ink-2);font-size:16.5px;margin-bottom:24px}
-
-.ledger{width:100%;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm)}
-.ledger th,.ledger td{padding:18px 22px;text-align:left;border-bottom:1px solid var(--line-soft);font-size:16.5px}
-.ledger thead th{background:var(--ink);color:#fff;font-weight:700;font-size:14.5px;letter-spacing:.02em}
-.ledger tbody th{font-weight:700;color:var(--ink);font-size:17.5px;letter-spacing:-.02em}
-.ledger tbody tr:last-child th,.ledger tbody tr:last-child td{border-bottom:0}
-.ledger td{color:var(--ink-2)}
-.pill{display:inline-block;padding:5px 13px;border-radius:999px;font-size:14px;font-weight:700;background:var(--orange-soft);color:var(--orange-deep)}
-.pill--own{background:var(--ink);color:#fff}
 
 /* ── 03 사업파트너 ─────────────────────────── */
 .who{display:grid;grid-template-columns:repeat(2,1fr);gap:40px 52px}
@@ -536,7 +523,6 @@ h3{font-size:20px;font-weight:700;letter-spacing:-.022em}
   .chair__mark{width:56px;height:56px;font-size:13px}
   .chair__head h3{font-size:24px}
   .chair__quote p{font-size:17.5px}
-  .proof{margin-top:44px}
   .ways{grid-template-columns:repeat(2,1fr);gap:12px}
   .way{padding:22px 18px 20px}
   .way h3{font-size:17px}
@@ -576,15 +562,6 @@ h3{font-size:20px;font-weight:700;letter-spacing:-.022em}
   .closing__actions .btn{width:100%}
 
   /* 자산 표: 카드형 */
-  .ledger,.ledger tbody{display:block;border-radius:var(--r)}
-  .ledger thead{display:none}
-  .ledger tr{position:relative;display:block;padding:16px 116px 16px 18px;border-bottom:1px solid var(--line-soft)}
-  .ledger tbody tr:last-child{border-bottom:0}
-  .ledger th,.ledger td{padding:0;border:0;font-size:15px}
-  .ledger tbody th{display:block;font-size:17px;margin-bottom:3px}
-  .ledger td:nth-child(2),.ledger td:nth-child(3){display:inline;color:var(--muted)}
-  .ledger td:nth-child(3)::before{content:" · "}
-  .ledger td:nth-child(4){position:absolute;right:18px;top:50%;transform:translateY(-50%)}
 }
 
 @media (max-width:560px){
