@@ -107,8 +107,16 @@
     var thumbs = [].slice.call(gal.querySelectorAll('.gal__t'));
     var idx = 0;
 
-    // 사진 파일이 아직 올라가지 않았다면 갤러리를 통째로 감춤
-    gImg.addEventListener('error', function () { gal.classList.add('is-off'); }, { once: true });
+    // 사진이 실제로 열릴 때만 갤러리를 보여 줌.
+    // 파일이 아직 없으면 깨진 이미지 대신 영역 자체가 나타나지 않음.
+    var probe = new Image();
+    probe.onload = function () {
+      gal.hidden = false;
+      gal.classList.add('is-in');
+      gImg.src = 'assets/img/office/lobby.jpg';
+    };
+    probe.onerror = function () { gal.hidden = true; };
+    probe.src = 'assets/img/office/lobby.jpg';
 
     function show(i) {
       i = (i + thumbs.length) % thumbs.length;
